@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine?</title>
+    <style>
+        body {
+            background: #fbeff7;
+            color: #3e3e3e;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Heart Animation Styling */
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            left: 50%;
+            top: 100%;
+            margin-left: -25px;
+            margin-top: -25px;
+            transform: rotate(-45deg);
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .heart:before, .heart:after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: inherit;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -25px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 25px;
+            top: 0;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+
+        /* Different colors for hearts */
+        .heart.red { background-color: red; }
+        .heart.blue { background-color: blue; }
+        .heart.green { background-color: green; }
+        .heart.cyan { background-color: cyan; }
+        .heart.magenta { background-color: magenta; }
+        .heart.yellow { background-color: yellow; }
+        .heart.navy { background-color: navy; }
+        .heart.orange { background-color: orange; }
+        .heart.pink { background-color: pink; }
+
+        /* Container Styling */
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1; /* To ensure hearts float behind the container */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #e94e77;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background: #e94e77;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+            position: absolute;
+        }
+
+        #yesButton {
+            left: 35%;
+            top: 150px;
+            transform: translateX(-50%);
+        }
+
+        #noButton {
+            left: calc(35% + 120px);
+            top: 150px;
+            transform: translateX(-50%);
+        }
+
+        .button:hover {
+            background: #d43f5a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will You Be Mine?</h1>
+        <p>I've been meaning to ask you for a long time, but I couldn't. Now I'm asking!</p>
+        <button class="button" id="yesButton">Yes</button>
+        <button class="button" id="noButton">No</button>
+    </div>
+
+    <!-- Add heart elements with different colors -->
+    <div class="heart red"></div>
+    <div class="heart blue" style="left: 20%; animation-duration: 8s;"></div>
+    <div class="heart green" style="left: 80%; animation-duration: 12s;"></div>
+    <div class="heart cyan" style="left: 30%; animation-duration: 6s;"></div>
+    <div class="heart magenta" style="left: 60%; animation-duration: 14s;"></div>
+    <div class="heart yellow" style="left: 40%; animation-duration: 10s;"></div>
+    <div class="heart navy" style="left: 15%; animation-duration: 9s;"></div>
+    <div class="heart orange" style="left: 70%; animation-duration: 11s;"></div>
+    <div class="heart pink" style="left: 50%; animation-duration: 7s;"></div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const container = document.querySelector('.container');
+
+        function moveButtonRandomly() {
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = noButton.getBoundingClientRect();
+            
+            // Calculate new random position within the container
+            const maxX = containerRect.width - buttonRect.width;
+            const maxY = containerRect.height - buttonRect.height;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        }
+
+        noButton.addEventListener('click', moveButtonRandomly);
+
+        yesButton.addEventListener('click', () => {
+            alert('Yay! I’m so glad you said yes!');
+        });
+    </script>
+</body>
+</html>
